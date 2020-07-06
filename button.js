@@ -31,11 +31,11 @@ $(document).ready(function () {
 
     // card & list button 제어
 
-    $(".card_button").on("click", function () {
-        $(".write_card").toggle();
-        $(".save.card").css("display", "flex");
-        $(".card_button").css("display", "none");
-    });
+    // $(".card_button").on("click", function () {
+    //     $(".write_card").toggle();
+    //     $(".save.card").css("display", "flex");
+    //     $(".card_button").css("display", "none");
+    // });
     $(".list_button").on("click", function () {
         $(".write_list").toggle();
         $(".save.list").css("display", "flex");
@@ -43,14 +43,15 @@ $(document).ready(function () {
     });
 
     $(".closeList").on("click", function () {
+        $(".write_list").val("");
         $(".write_list").toggle();
         $(".list_button").css("display", "block");
         $(".save.list").css("display", "none");
     });
 
-    $(".closeCard").on("click", function () {
-        $(".write_card").toggle();
-        $(".card_button").css("display", "block");
-        $(".save.card").css("display", "none");
-    });
+    // $(".closeCard").on("click", function () {
+    //     $(".write_card").toggle();
+    //     $(".card_button").css("display", "block");
+    //     $(".save.card").css("display", "none");
+    // });
 });

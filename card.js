@@ -1,59 +1,108 @@
-// const listForm = document.getElementsByClassName("list_form");
-// const listInput = document.getElementsByClassName("write_list");
-// let writeList = [];
+const saveButton = document.querySelector(".card_form");
+let lists = localStorage.getItem("list")
+    ? JSON.parse(localStorage.getItem("list"))
+    : [];
 
-// function reloadList(text) {
-//     const div = document.createElement("div");
-//     div.classList.add("trello_card add_list");
-//     div.innerHTML = `<h2>${text}</h2>`;
-// }
+function listOpen(event) {
+    const addButton = event.target;
+    addButton.previousSibling.previousSibling.classList.toggle("showing");
+    addButton.classList.toggle("non_showing");
+}
 
-// function loadList() {
-//     const saveList = localStorage.getItem("list");
-//     if (saveList !== null) {
-//         const parseList = JSON.parse(saveList);
-//         parseList.forEach((list) => {
-//             reloadList(list.text);
-//         });
-//     }
-// }
+function listClose(event) {
+    const close = event.target;
+    close.parentNode.classList.remove("showing");
+    close.parentNode.previousSibling.parentNode.classList.remove("showing");
+    close.parentNode.previousSibling.parentNode.nextSibling.nextSibling.classList.remove(
+        "non_showing",
+    );
+}
 
-// function handleSubmit() {
-//     event.preventDefault();
-//     const listInputValue = listInput.value;
-//     reloadList(listInputValue);
-//     listInput.value = "";
-// }
+function cardSave(event) {
+    const cardSaveButton = event.target;
+    const inputTarget =
+        cardSaveButton.parentNode.previousSibling.parentElement.children[0];
+    const inputValue = inputTarget.value;
 
-// function init() {
-//     loadList();
-//     listForm.addEventListener("submit", handleSubmit);
-// }
+    if (!inputValue) {
+        event.preventDefault;
+    } else {
+        for (let i = 0; i < lists.length; i++) {
+            if (lists[i].id === inputTarget.id) {
+                lists[i].card.push(inputValue);
+            }
+        }
 
-// init();
+        saveList();
+    }
+}
 
-let lists = [];
+function writingList(title, id) {
+    $(".board").prepend(`<div class = "trello_card add_list${id}">
+    <h2>${title}</h2>
+    <ul class="trello_card_list">
+    </ul>
+    
+    <form class="card_form">
+        <input
+            type="text"
+            class="write_card"
+            id="${id}"
+            placeholder="Enter a title for your card ..."
+        />
+        <div class="save card">
+            <button class="save_button saveCard">
+                save
+            </button>
+            <span class="save_close closeCard">&times;</span>
+        </div>
+    </form>
+    <button class="add_button card_button" id="add_${id}">
+        <i class="fas fa-plus"></i>add another CARD
+    </button>
+    </div>
+   `);
+    const saveButton = document.querySelector(".add_button");
+    const closeButton = document.querySelector(".closeCard");
+    const saveCardButton = document.querySelector(".saveCard");
+    saveButton.addEventListener("click", listOpen);
+    closeButton.addEventListener("click", listClose);
+    saveCardButton.addEventListener("click", cardSave);
+}
 
 function saveList() {
     localStorage.setItem("list", JSON.stringify(lists));
-    console.log(lists);
+    location.href = location.href;
 }
 
 function trelloList() {
     const listValue = $(".write_list").val();
+
     const writeList = {
         title: listValue,
-        id: lists.length + 1,
+        card: [],
+        id: `card_${lists.length + 1}`,
     };
     lists.push(writeList);
     saveList();
 }
 
-// const saveButton = document.getElementsByClassName(".saveList")
-// saveButton.onclick = function(){
-
-// }
 $(".saveList").on("click", function () {
-    trelloList();
-    $(".write_list").val("");
+    const listValue = $(".write_list").val();
+    if (!listValue) {
+        event.preventDefault;
+    } else {
+        trelloList();
+        $(".write_list").val("");
+    }
 });
+
+function init() {
+    if (lists !== null) {
+        lists.forEach((currentList) => {
+            writingList(currentList.title, currentList.id);
+        });
+    }
+}
+
+init();

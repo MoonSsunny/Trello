@@ -120,11 +120,13 @@ i {
 /* section css */
 
 section.board {
-    margin-top: 30px;
-    margin-left: 30px;
+    padding: 0 100px;
+    max-width: 1280px;
+    margin: 30px auto;
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: center;
 }
 
 .trello_card {
@@ -137,6 +139,7 @@ section.board {
     background-color: rgb(233, 230, 230, 0.8);
     text-align: center;
     margin-left: 10px;
+    margin-bottom: 20px;
 }
 .trello_card > h2 {
     margin: 20px 0 10px 20px;
@@ -147,6 +150,10 @@ section.board {
 
 .trello_card_list {
     margin-top: 10px;
+}
+
+.card_form {
+    display: none;
 }
 
 .add_button {
@@ -184,7 +191,6 @@ section.board {
 
 .write_card,
 .write_list {
-    display: none;
     width: 270px;
     height: 40px;
     margin: 10px auto 0;
@@ -193,14 +199,20 @@ section.board {
     outline: 0;
 }
 
-.save {
+.write_list {
     display: none;
-    /* display: flex; */
+}
+
+.save {
+    display: flex;
     align-items: center;
     margin-top: 10px;
     margin-left: 20px;
     margin-bottom: 20px;
     text-align: left;
+}
+.save.list {
+    display: none;
 }
 
 .save_button {
