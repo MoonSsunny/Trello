@@ -72,24 +72,32 @@
             </header>
 
             <section class="board">
-                <div class="trello_card add_list">
-                    <h2>제목</h2>
-                    <ul class="trello_card_list">
-                        <!-- <li>공부</li>
-                        <li>공부</li> -->
-                    </ul>
-                    <input
-                        type="text"
-                        class="write_card"
-                        placeholder="Enter a title for your card ..."
-                    />
-                    <div class="save card">
-                        <button class="save_button">save</button>
-                        <span class="save_close saveCard">&times;</span>
+                <div class="make_list">
+                    <div class="trello_card add_list">
+                        <h2>제목</h2>
+                        <ul class="trello_card_list">
+                            <!-- <li>공부</li>
+                          <li>공부</li> -->
+                        </ul>
+                        <form class="card_form">
+                            <input
+                                type="text"
+                                class="write_card"
+                                placeholder="Enter a title for your card ..."
+                            />
+                            <div class="save card">
+                                <button class="save_button saveCard">
+                                    save
+                                </button>
+                                <span class="save_close closeCard"
+                                    >&times;</span
+                                >
+                            </div>
+                        </form>
+                        <button class="add_button card_button">
+                            <i class="fas fa-plus"></i>add another CARD
+                        </button>
                     </div>
-                    <button class="add_button card_button">
-                        <i class="fas fa-plus"></i>add another CARD
-                    </button>
                 </div>
 
                 <div class="trello_card add_card">
@@ -99,16 +107,19 @@
                         placeholder="Enter a title for your list ..."
                     />
                     <div class="save list">
-                        <button class="save_button">save</button>
-                        <span class="save_close saveList">&times;</span>
+                        <button class="save_button saveList">
+                            save
+                        </button>
+                        <span class="save_close closeList">&times;</span>
                     </div>
+
                     <button class="add_button list_button">
                         <i class="fas fa-plus"></i>add LIST
                     </button>
                 </div>
             </section>
         </div>
-        <script src="./button.js" defer></script>
-        <script src="./card.js" defer></script>
+        <script src="./button.js" defer type="text/javascript"></script>
+        <script src="./card.js" defer type="text/javascript"></script>
     </body>
 </html>

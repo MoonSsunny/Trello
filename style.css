@@ -33,7 +33,7 @@ i {
 /* modal css */
 
 .modal {
-    /* display: none; */
+    display: none;
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -227,4 +227,14 @@ section.board {
 
 .save_close:hover {
     color: #b9b7b7;
+}
+
+/* 제어 */
+
+.showing {
+    display: block;
+}
+
+.non_showing {
+    display: none;
 }

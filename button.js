@@ -42,13 +42,13 @@ $(document).ready(function () {
         $(".list_button").css("display", "none");
     });
 
-    $(".saveList").on("click", function () {
+    $(".closeList").on("click", function () {
         $(".write_list").toggle();
         $(".list_button").css("display", "block");
         $(".save.list").css("display", "none");
     });
 
-    $(".saveCard").on("click", function () {
+    $(".closeCard").on("click", function () {
         $(".write_card").toggle();
         $(".card_button").css("display", "block");
         $(".save.card").css("display", "none");
