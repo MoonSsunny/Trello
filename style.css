@@ -121,12 +121,12 @@ i {
 
 section.board {
     padding: 0 100px;
-    max-width: 1280px;
+    max-width: 1140px;
     margin: 30px auto;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .trello_card {

@@ -11,11 +11,10 @@ function listOpen(event) {
 
 function listClose(event) {
     const close = event.target;
+    const listTarget = close.parentNode.previousSibling.parentNode;
     close.parentNode.classList.remove("showing");
-    close.parentNode.previousSibling.parentNode.classList.remove("showing");
-    close.parentNode.previousSibling.parentNode.nextSibling.nextSibling.classList.remove(
-        "non_showing",
-    );
+    listTarget.classList.remove("showing");
+    listTarget.nextSibling.nextSibling.classList.remove("non_showing");
 }
 
 function cardSave(event) {
@@ -37,13 +36,13 @@ function cardSave(event) {
     }
 }
 
-function writingList(title, id) {
+function writingList(title, id, card) {
     $(".board").prepend(`<div class = "trello_card add_list${id}">
     <h2>${title}</h2>
     <ul class="trello_card_list">
     </ul>
     
-    <form class="card_form">
+    <div class="card_form">
         <input
             type="text"
             class="write_card"
@@ -56,18 +55,24 @@ function writingList(title, id) {
             </button>
             <span class="save_close closeCard">&times;</span>
         </div>
-    </form>
+    </div>
     <button class="add_button card_button" id="add_${id}">
         <i class="fas fa-plus"></i>add another CARD
     </button>
     </div>
    `);
+
     const saveButton = document.querySelector(".add_button");
     const closeButton = document.querySelector(".closeCard");
     const saveCardButton = document.querySelector(".saveCard");
+    const cardList = document.querySelector("ul");
     saveButton.addEventListener("click", listOpen);
     closeButton.addEventListener("click", listClose);
     saveCardButton.addEventListener("click", cardSave);
+
+    for (let i = 0; i < card.length; i++) {
+        cardList.innerHTML += `<li>${card[i]}</li>`;
+    }
 }
 
 function saveList() {
@@ -100,7 +105,7 @@ $(".saveList").on("click", function () {
 function init() {
     if (lists !== null) {
         lists.forEach((currentList) => {
-            writingList(currentList.title, currentList.id);
+            writingList(currentList.title, currentList.id, currentList.card);
         });
     }
 }
