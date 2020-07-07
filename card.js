@@ -3,6 +3,10 @@ let lists = localStorage.getItem("list")
     ? JSON.parse(localStorage.getItem("list"))
     : [];
 
+let cards = localStorage.getItem("card")
+    ? JSON.parse(localStorage.getItem("card"))
+    : [];
+
 function listOpen(event) {
     const addButton = event.target;
     addButton.previousSibling.previousSibling.classList.toggle("showing");
@@ -15,6 +19,9 @@ function listClose(event) {
     close.parentNode.classList.remove("showing");
     listTarget.classList.remove("showing");
     listTarget.nextSibling.nextSibling.classList.remove("non_showing");
+}
+function saveCardList(list) {
+    localStorage.setItem("card", JSON.stringify(list));
 }
 
 function cardSave(event) {
@@ -29,6 +36,14 @@ function cardSave(event) {
         for (let i = 0; i < lists.length; i++) {
             if (lists[i].id === inputTarget.id) {
                 lists[i].card.push(inputValue);
+                // const listsCard = lists[i].card;
+                // const writeCard = {
+                //     id: `card_${lists.length}`,
+                //     content: listsCard,
+                // };
+
+                // console.log(writeCard);
+                // saveCardList(writeCard);
             }
         }
 
