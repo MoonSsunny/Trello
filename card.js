@@ -36,13 +36,39 @@ function cardSave(event) {
     }
 }
 
+function modalOpen(event) {
+    const modalClick = event.target;
+    const modalTitle = $(modalClick).text();
+    const modal = document.querySelector(".modal");
+    const modalHead = document.querySelector(".modal_header h1");
+    modal.classList.toggle("showing");
+    modalHead.innerText = modalTitle;
+    console.log(modalHead);
+}
+
+function deleteLists(event) {
+    const listbtn = event.target;
+    const listParent = listbtn.parentNode;
+    console.log(listbtn.parentNode);
+    console.log(lists);
+    for (let i = 0; i < lists.length; i++) {
+        if (listParent.id === lists[i].id) {
+            const cleanList = lists.filter((todo) => todo.id !== lists[i].id);
+            lists = cleanList;
+            saveList();
+        }
+    }
+}
+
 function writingList(title, id, card) {
-    $(".board").prepend(`<div class = "trello_card add_list${id}">
-    <h2>${title}</h2>
+    $(".board").prepend(`<div class = "trello_card add_list" id="${id}">
+    
+    <h2>${title}</h2><span class= "deleteList">&times;</span>
     <ul class="trello_card_list">
     </ul>
     
     <div class="card_form">
+    
         <input
             type="text"
             class="write_card"
@@ -66,9 +92,12 @@ function writingList(title, id, card) {
     const closeButton = document.querySelector(".closeCard");
     const saveCardButton = document.querySelector(".saveCard");
     const cardList = document.querySelector("ul");
+    const deleteList = document.querySelector(".deleteList");
     saveButton.addEventListener("click", listOpen);
     closeButton.addEventListener("click", listClose);
     saveCardButton.addEventListener("click", cardSave);
+    cardList.addEventListener("click", modalOpen);
+    deleteList.addEventListener("click", deleteLists);
 
     for (let i = 0; i < card.length; i++) {
         cardList.innerHTML += `<li>${card[i]}</li>`;

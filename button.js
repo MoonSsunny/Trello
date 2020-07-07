@@ -4,12 +4,12 @@ $(document).ready(function () {
     // 모달창 button 제어
 
     $(".close").on("click", function () {
-        $(".modal").css("display", "none");
+        $(".modal").removeClass("showing");
     });
 
     $(document).on("click", function (e) {
         if ($(".modal").is(e.target)) {
-            $(".modal").css("display", "none");
+            $(".modal").removeClass("showing");
         }
     });
 
@@ -31,11 +31,6 @@ $(document).ready(function () {
 
     // card & list button 제어
 
-    // $(".card_button").on("click", function () {
-    //     $(".write_card").toggle();
-    //     $(".save.card").css("display", "flex");
-    //     $(".card_button").css("display", "none");
-    // });
     $(".list_button").on("click", function () {
         $(".write_list").toggle();
         $(".save.list").css("display", "flex");
@@ -48,10 +43,4 @@ $(document).ready(function () {
         $(".list_button").css("display", "block");
         $(".save.list").css("display", "none");
     });
-
-    // $(".closeCard").on("click", function () {
-    //     $(".write_card").toggle();
-    //     $(".card_button").css("display", "block");
-    //     $(".save.card").css("display", "none");
-    // });
 });
