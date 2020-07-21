@@ -1,11 +1,7 @@
 const saveButton = document.querySelector(".card_form");
-let lists = localStorage.getItem("list")
-    ? JSON.parse(localStorage.getItem("list"))
-    : [];
+let lists = JSON.parse(localStorage.getItem("list")) || [];
 
-let cards = localStorage.getItem("card")
-    ? JSON.parse(localStorage.getItem("card"))
-    : [];
+let cards = JSON.parse(localStorage.getItem("card")) || [];
 
 function listOpen(event) {
     const addButton = event.target;
@@ -20,9 +16,6 @@ function listClose(event) {
     listTarget.classList.remove("showing");
     listTarget.nextSibling.nextSibling.classList.remove("non_showing");
 }
-function saveCardList(list) {
-    localStorage.setItem("card", JSON.stringify(list));
-}
 
 function cardSave(event) {
     const cardSaveButton = event.target;
@@ -36,14 +29,6 @@ function cardSave(event) {
         for (let i = 0; i < lists.length; i++) {
             if (lists[i].id === inputTarget.id) {
                 lists[i].card.push(inputValue);
-                // const listsCard = lists[i].card;
-                // const writeCard = {
-                //     id: `card_${lists.length}`,
-                //     content: listsCard,
-                // };
-
-                // console.log(writeCard);
-                // saveCardList(writeCard);
             }
         }
 
